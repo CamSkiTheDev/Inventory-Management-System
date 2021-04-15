@@ -88,3 +88,8 @@ body {
 .columns {
   margin: 0;
 }
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+}
