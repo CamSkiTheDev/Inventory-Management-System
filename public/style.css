@@ -1,1 +1,81 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --Dark-Blue: #074578;
+  --Mild-Blue: #085391;
+  --Cool-Blue: #0b7dda;
+  --Stocky-yellow: #fff530;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background: var(--Dark-Blue);
+  font-size: 16px;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.center-content {
+  justify-content: center;
+  align-items: center;
+}
+
+.logo_img {
+  margin: 0.25em auto;
+  width: 4.6875em;
+  height: auto;
+  display: block;
+}
+
+.stocky-yellow {
+  color: var(--Stocky-yellow) !important;
+  text-shadow: 0 0.0625em 0.0625em rgba(0, 0, 0, 0.4);
+}
+
+.is-primary {
+  background: var(--Cool-Blue) !important;
+}
+
+.block-link {
+  margin: 0.25em 0;
+  display: block;
+}
+
+.form-box {
+  width: 18.75em;
+}
+
+.is-error {
+  color: #fff;
+  background: red;
+}
+
+.is-success {
+  color: #fff;
+  background: green;
+}
+
+.inventory-panel {
+  max-width: 800px;
+  background: #fff;
+}
+
+.control {
+  display: flex;
+  justify-content: center;
+}
+
+.text-align-center {
+  text-align: center;
+}
