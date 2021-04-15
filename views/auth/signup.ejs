@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <div class="main center-content">
+      <form action="/auth/signup" method="POST" class="box form-box">
+        <img class="logo_img" draggable="false" src="/stocky_logo.svg" alt="" />
+        <h1 class="title is-2">
+          Join <strong class="stocky-yellow">Stocky</strong>
+        </h1>
+        <% if(locals.error) { %>
+        <div class="box is-error"><%= error.msg %></div>
+        <% } %> <% if(locals.success) { %>
+        <div class="box is-success">
+          <%= success.msg %> <% if(locals.store) { %>You can now
+          <a href="/auth/login">login</a>.<% } %>
+        </div>
+        <% } %>
+        <div class="field">
+          <label class="label">Invitation Code</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Invitation Code"
+              name="invitationCode"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
+          </div>
+        </div>
+        <button type="submit" class="button is-primary">Join Stocky</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <div class="main center-content">
+      <form action="/auth/login" method="POST" class="box form-box">
+        <img class="logo_img" draggable="false" src="/stocky_logo.svg" alt="" />
+        <h1 class="title is-2">
+          <strong class="stocky-yellow">Stocky</strong> Login
+        </h1>
+        <% if(locals.error) { %>
+        <div class="box is-error"><%= error.msg %></div>
+        <% } %>
+        <div class="field">
+          <label class="label">Store Number</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Store Number"
+              name="storeNumber"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              class="input"
+              type="password"
+              placeholder="Password"
+              name="password"
+            />
+          </div>
+        </div>
+        <a class="block-link" href="/auth/signup">Create New Store</a>
+        <button type="submit" class="button is-primary">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
