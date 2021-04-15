@@ -26,6 +26,12 @@ body {
   display: flex;
 }
 
+.wrapper {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1024px;
+}
+
 .center-content {
   justify-content: center;
   align-items: center;
@@ -67,7 +73,6 @@ body {
 }
 
 .inventory-panel {
-  max-width: 800px;
   background: #fff;
 }
 
@@ -78,4 +83,8 @@ body {
 
 .text-align-center {
   text-align: center;
+}
+
+.columns {
+  margin: 0;
 }

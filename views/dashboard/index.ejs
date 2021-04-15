@@ -2,24 +2,47 @@
 <html lang="en">
   <%- include('../partials/head') %>
   <body>
-    <div class="panel inventory-panel">
-      <p class="panel-heading">Inventory</p>
-
-      <div class="panel-block">
-        <p class="column is-two-thirds control">
-          <input class="input" type="text" placeholder="Search" />
-        </p>
-        <p class="column control">
-          <button class="button is-primary" style="margin: 0 auto">
-            New Inventory Item +
-          </button>
-        </p>
+    <div class="wrapper">
+      <div class="columns card">
+        <div class="column">
+          <h3>Tires - $23,432</h3>
+          <progress class="progress" value="25" max="100" />
+        </div>
       </div>
+      <div class="panel inventory-panel">
+        <p class="panel-heading">Inventory</p>
 
-      <div class="panel-block">
-        <p class="column text-align-center">Category</p>
-        <p class="column text-align-center">Sku</p>
-        <p class="column text-align-center">Quanity</p>
+        <div class="panel-block">
+          <p class="column is-two-thirds control">
+            <input class="input" type="text" placeholder="Search" />
+          </p>
+          <p class="column control">
+            <button class="button is-primary" style="margin: 0 auto">
+              New Inventory Item +
+            </button>
+          </p>
+        </div>
+
+        <div class="panel-block">
+          <p class="column text-align-center">Category</p>
+          <p class="column text-align-center">Title</p>
+          <p class="column text-align-center">Sku</p>
+          <p class="column text-align-center">Quanity</p>
+        </div>
+
+        <div class="panel-block">
+          <p class="column text-align-center">Tires</p>
+          <p class="column text-align-center">Kenda V2/AH</p>
+          <p class="column text-align-center">0123456789</p>
+          <p class="column text-align-center">22</p>
+        </div>
+
+        <div class="panel-block">
+          <p class="column text-align-center">Filter</p>
+          <p class="column text-align-center">PrimeGuard AS2503</p>
+          <p class="column text-align-center">0987654321</p>
+          <p class="column text-align-center">2</p>
+        </div>
       </div>
     </div>
   </body>
