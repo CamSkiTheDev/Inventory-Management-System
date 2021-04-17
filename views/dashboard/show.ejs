@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <div class="wrapper">
+      <div class="panel inventory-panel">
+        <p class="panel-heading"><%= item.title %></p>
+        <form
+          class="panel-block"
+          method="POST"
+          action="/dashboard/inventory/<%= item._id %>?_method=DELETE"
+        >
+          Tools:
+          <a
+            href="/dashboard/inventory/<%= item._id %>/edit"
+            class="fas fa-pencil-alt"
+          ></a>
+          <button type="submit" class="fas fa-trash"></button>
+        </form>
+        <div class="panel-block">Category: <%= item.category[0].title %></div>
+        <div class="panel-block">Sku: <%= item.sku %></div>
+        <div class="panel-block">Part Number: <%= item.partNumber %></div>
+        <div class="panel-block">
+          Cost: $<%= ((item.cost || 0) / 100).toFixed(2) %>
+        </div>
+        <div class="panel-block">
+          Price: $<%= ((item.price || 0) / 100).toFixed(2) %>
+        </div>
+        <div class="panel-block">Quanity: <%= item.quanity %></div>
+      </div>
+    </div>
+  </body>
+</html>
