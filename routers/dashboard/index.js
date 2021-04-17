@@ -17,6 +17,21 @@ router.get("/new", async (req, res) => {
   res.render("dashboard/new", { categories });
 });
 
+router.delete("/inventory/:id", async (req, res) => {
+  await Inventory.findByIdAndDelete(req.params.id);
+
+  res.redirect("/dashboard");
+});
+
+router.put("/inventory/:id", async (req, res) => {
+  if (req.body.cost > 0) req.body.cost = req.body.cost * 100;
+  if (req.body.price > 0) req.body.price = req.body.price * 100;
+
+  await Inventory.findByIdAndUpdate(req.params.id, { $set: { ...req.body } });
+
+  res.redirect("/dashboard");
+});
+
 router.post("/category", async (req, res) => {
   try {
     const { title } = req.body;
@@ -50,6 +65,20 @@ router.post("/inventory", async (req, res) => {
   } catch (error) {
     console.log(error);
   }
+});
+
+router.get("/inventory/:id/edit", async (req, res) => {
+  const categories = await Category.find({});
+  const item = await Inventory.findById(req.params.id);
+  res.render("dashboard/edit", { categories, item });
+});
+
+router.get("/inventory/:id", async (req, res) => {
+  try {
+    const item = await Inventory.findById(req.params.id).populate("category");
+
+    res.render("dashboard/show", { item });
+  } catch (error) {}
 });
 
 module.exports = router;
