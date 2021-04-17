@@ -1,13 +1,19 @@
-document.querySelector(".category").addEventListener("change", (e) => {
-  if (e.target.value === "create-new-category") {
-    const modal = document.querySelector("#new-category-modal");
-    modal.classList.toggle("is-active");
-  }
-});
+const categoryDropdown = document.querySelector(".category");
 
-document
-  .querySelector("#new-category-modal-close")
-  .addEventListener("click", () => {
+if (categoryDropdown)
+  categoryDropdown.addEventListener("change", (e) => {
+    if (e.target.value === "create-new-category") {
+      const modal = document.querySelector("#new-category-modal");
+      modal.classList.toggle("is-active");
+    }
+  });
+
+const newCategoryModalCloseBtn = document.querySelector(
+  "#new-category-modal-close"
+);
+
+if (newCategoryModalCloseBtn)
+  newCategoryModalCloseBtn.addEventListener("click", () => {
     const modal = document.querySelector("#new-category-modal");
     modal.classList.toggle("is-active");
   });
