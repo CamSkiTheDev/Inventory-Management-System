@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const methodOverride = require("method-override");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const indexRouter = require("./routers");
 
@@ -22,6 +23,8 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
+app.use(require("morgan")("tiny"));
 app.use(
   session({
     secret: "This is a secret",
