@@ -16,11 +16,11 @@
           <p class="column is-two-thirds control">
             <input class="input" type="text" placeholder="Search" />
           </p>
-          <p class="column control">
+          <a href="/dashboard/new" class="column control">
             <button class="button is-primary" style="margin: 0 auto">
               New Inventory Item +
             </button>
-          </p>
+          </a>
         </div>
 
         <div class="panel-block">
@@ -30,19 +30,18 @@
           <p class="column text-align-center">Quanity</p>
         </div>
 
-        <div class="panel-block">
-          <p class="column text-align-center">Tires</p>
-          <p class="column text-align-center">Kenda V2/AH</p>
-          <p class="column text-align-center">0123456789</p>
-          <p class="column text-align-center">22</p>
-        </div>
-
-        <div class="panel-block">
-          <p class="column text-align-center">Filter</p>
-          <p class="column text-align-center">PrimeGuard AS2503</p>
-          <p class="column text-align-center">0987654321</p>
-          <p class="column text-align-center">2</p>
-        </div>
+        <% inventory.forEach(item => { %>
+          <a class="panel-block">
+            <p class="column text-align-center">
+              <% item.category.forEach((cat) => { %>
+                <%= `${cat.title} ` %>
+              <% }) %>
+            </p>
+            <p class="column text-align-center"><%= item.title %></p>
+            <p class="column text-align-center"><%= item.sku %></p>
+            <p class="column text-align-center"><%= item.quanity %></p>
+          </a>
+          <% }) %>
       </div>
     </div>
   </body>
