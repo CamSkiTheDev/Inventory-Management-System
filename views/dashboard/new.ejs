@@ -5,7 +5,7 @@
     <div class="modal" id="new-category-modal">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <form class="box form-box">
+        <form class="box form-box" action="/dashboard/category" method="POST">
           <img
             class="logo_img"
             draggable="false"
@@ -38,7 +38,7 @@
       ></button>
     </div>
     <div class="main center-content">
-      <form class="box form-box">
+      <form class="box form-box" action="/dashboard/inventory" method="POST">
         <img class="logo_img" draggable="false" src="/stocky_logo.svg" alt="" />
         <h1 class="title is-2">
           New <strong class="stocky-yellow">Inventory</strong>
@@ -47,9 +47,12 @@
         <div class="field">
           <label class="label">Item Category</label>
           <div class="select">
-            <select name="category" class="category">
+            <select name="category" class="category" required>
               <option value="">Select Category</option>
               <option value="create-new-category">Create New Category +</option>
+              <% categories.forEach((category) => { %>
+              <option value="<%= category._id %>"><%= category.title %></option>
+              <% }) %>
             </select>
           </div>
         </div>
@@ -62,6 +65,7 @@
               type="text"
               placeholder="Item Title"
               name="title"
+              required
             />
           </div>
         </div>
@@ -69,7 +73,13 @@
         <div class="field">
           <label class="label">Sku</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Sku" name="sku" />
+            <input
+              class="input"
+              type="text"
+              placeholder="Sku"
+              name="sku"
+              required
+            />
           </div>
         </div>
 
@@ -88,7 +98,13 @@
         <div class="field">
           <label class="label">Cost</label>
           <div class="control">
-            <input class="input" type="text" placeholder="Cost" name="cost" />
+            <input
+              class="input"
+              type="text"
+              placeholder="Cost"
+              name="cost"
+              required
+            />
           </div>
         </div>
 
@@ -107,6 +123,7 @@
               type="text"
               placeholder="Quanity"
               name="quanity"
+              required
             />
           </div>
         </div>
