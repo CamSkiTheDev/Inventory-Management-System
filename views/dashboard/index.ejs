@@ -31,7 +31,7 @@
         </div>
 
         <% inventory.forEach(item => { %>
-          <a class="panel-block" href="/dashboard/inventory/<%= item._id %>/edit">
+          <a class="panel-block" href="/dashboard/inventory/<%= item._id %>">
             <p class="column text-align-center">
               <% item.category.forEach((cat) => { %>
                 <%= `${cat.title} ` %>
@@ -41,7 +41,7 @@
             <p class="column text-align-center"><%= item.sku %></p>
             <p class="column text-align-center"><%= item.quanity %></p>
           </a>
-          <% }) %>
+        <% }) %>
       </div>
     </div>
   </body>
