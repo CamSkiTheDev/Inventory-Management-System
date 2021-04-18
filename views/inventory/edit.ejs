@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head') %>
+  <body>
+    <div class="main center-content">
+      <form
+        class="box form-box"
+        action="/dashboard/inventory/<%= item._id %>?_method=PUT"
+        method="POST"
+      >
+        <img class="logo_img" draggable="false" src="/stocky_logo.svg" alt="" />
+        <h1 class="title is-2">
+          Edit <strong class="stocky-yellow">Inventory</strong>
+        </h1>
+
+        <div class="field">
+          <label class="label">Item Category</label>
+          <div class="select">
+            <select name="category" class="category" required>
+              <% categories.forEach((category) => { %> <%
+              if(item.category.includes(category._id)) { %>
+              <option value="<%= category._id %>" selected>
+                <%= category.title %>
+              </option>
+              <% } else { %>
+              <option value="<%= category._id %>"><%= category.title %></option>
+              <% } %> <% }) %>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Item Title</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Item Title"
+              name="title"
+              value="<%= item.title %>"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Sku</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Sku"
+              name="sku"
+              value="<%= item.sku %>"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Part Number</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Part Number"
+              value="<%= item.partNumber %>"
+              name="partNumber"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Cost</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Cost"
+              name="cost"
+              value="<%= ((item.cost || 0) / 100).toFixed(2) %>"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Price</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Price"
+              name="price"
+              value="<%= ((item.price || 0) / 100).toFixed(2) %>"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Quanity</label>
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="Quanity"
+              name="quanity"
+              value="<%= item.quanity %>"
+              required
+            />
+          </div>
+        </div>
+
+        <button type="submit" class="button is-primary">
+          Update Inventory
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
