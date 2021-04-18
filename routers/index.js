@@ -10,8 +10,13 @@ router.use(async (req, res, next) => {
   next();
 });
 
+const isAuthorized = (req, res, next) => {
+  if (!req.session.store) return res.status(401).redirect("/auth/login");
+  next();
+};
+
 router.use("/auth", authRouter);
 
-router.use("/dashboard", dashboardRouter);
+router.use("/dashboard", isAuthorized, dashboardRouter);
 
 module.exports = router;
