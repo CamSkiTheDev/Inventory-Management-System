@@ -1,12 +1,63 @@
 const router = require("express").Router();
 const Category = require("../../models/Category");
 const Inventory = require("../../models/Inventory");
+const Store = require("../../models/Store");
 
 router.get("/", async (req, res) => {
   try {
-    const inventory = await Inventory.find().populate("category");
+    const inventory = await Inventory.find({
+      store: req.session.store._id,
+    }).populate("category");
+    const categories = await Category.find().populate("products");
 
-    res.render("dashboard/index", { inventory });
+    const inventoryTotals = {
+      cost: inventory.reduce(
+        (total, item) => (total += item.cost * item.quanity),
+        0
+      ),
+      value: inventory.reduce(
+        (total, item) => (total += item.price * item.quanity),
+        0
+      ),
+      profit:
+        inventory.reduce(
+          (total, item) => (total += item.price * item.quanity),
+          0
+        ) -
+        inventory.reduce(
+          (total, item) => (total += item.cost * item.quanity),
+          0
+        ),
+    };
+
+    let categoryTotals = categories.map((category) => {
+      return {
+        title: category.title,
+        cost: category.products.reduce(
+          (total, item) => (total += item.cost * item.quanity),
+          0
+        ),
+        value: category.products.reduce(
+          (total, item) => (total += item.price * item.quanity),
+          0
+        ),
+        profit:
+          category.products.reduce(
+            (total, item) => (total += item.price * item.quanity),
+            0
+          ) -
+          category.products.reduce(
+            (total, item) => (total += item.cost * item.quanity),
+            0
+          ),
+      };
+    });
+
+    res.render("dashboard/index", {
+      inventory,
+      inventoryTotals,
+      categoryTotals,
+    });
   } catch (error) {
     console.log(error);
   }
@@ -24,8 +75,13 @@ router.delete("/inventory/:id", async (req, res) => {
 });
 
 router.put("/inventory/:id", async (req, res) => {
-  if (req.body.cost > 0) req.body.cost = req.body.cost * 100;
-  if (req.body.price > 0) req.body.price = req.body.price * 100;
+  req.body.cost > 0
+    ? (req.body.cost = req.body.cost * 100)
+    : (req.body.cost = 0);
+  req.body.price > 0
+    ? (req.body.price = req.body.price * 100)
+    : (req.body.price = 0);
+  !req.body.partNumber ? delete req.body.partNumber : null;
 
   await Inventory.findByIdAndUpdate(req.params.id, { $set: { ...req.body } });
 
@@ -43,8 +99,14 @@ router.post("/category", async (req, res) => {
 
 router.post("/inventory", async (req, res) => {
   try {
-    if (req.body.cost > 0) req.body.cost = req.body.cost * 100;
-    if (req.body.price > 0) req.body.price = req.body.price * 100;
+    req.body.cost > 0
+      ? (req.body.cost = req.body.cost * 100)
+      : (req.body.cost = 0);
+    req.body.price > 0
+      ? (req.body.price = req.body.price * 100)
+      : (req.body.price = 0);
+    !req.body.partNumber ? delete req.body.partNumber : null;
+
     let inventory = await Inventory.findOne({ sku: req.body.sku });
     const category = await Category.findById(req.body.category);
 
@@ -60,6 +122,10 @@ router.post("/inventory", async (req, res) => {
 
     category.products.push(inventory._id);
     await category.save();
+
+    await Store.findByIdAndUpdate(req.session.store._id, {
+      $push: { inventory },
+    });
 
     res.redirect("/dashboard");
   } catch (error) {
