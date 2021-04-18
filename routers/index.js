@@ -15,6 +15,8 @@ const isAuthorized = (req, res, next) => {
   next();
 };
 
+router.get("/", (req, res) => res.redirect("/dashboard"));
+
 router.use("/auth", authRouter);
 
 router.use("/dashboard", isAuthorized, dashboardRouter);
