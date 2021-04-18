@@ -5,12 +5,20 @@
     <div class="wrapper">
       <div class="columns card">
         <div class="column">
-          <h3>Tires - $23,432</h3>
-          <progress class="progress" value="25" max="100" />
+          <h3>Total Value - $<%= ((inventoryTotals.value || 0) / 100).toLocaleString({style: 'currency', currency: 'USD'}) %></h3>
+          <progress class="progress is-link" value="<%= inventoryTotals.value %>" max="<%= inventoryTotals.value %>" />
+        </div>
+        <div class="column">
+          <h3>Total Cost - $<%= ((inventoryTotals.cost || 0) / 100).toLocaleString({style: 'currency', currency: 'USD'}) %></h3>
+          <progress class="progress is-info" value="<%= inventoryTotals.cost %>" max="<%= inventoryTotals.value %>" />
+        </div>
+        <div class="column">
+          <h3>Potential Profit - $<%= ((inventoryTotals.profit || 0) / 100).toLocaleString({style: 'currency', currency: 'USD'}) %></h3>
+          <progress class="progress is-success" value="<%= inventoryTotals.profit %>" max="<%= inventoryTotals.value %>" />
         </div>
       </div>
       <div class="panel inventory-panel">
-        <p class="panel-heading">Inventory</p>
+        <p class="panel-heading">Inventory - <a href="/auth/logout">Log out</a></p>
 
         <div class="panel-block">
           <p class="column is-two-thirds control">
