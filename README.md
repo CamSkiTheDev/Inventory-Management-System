@@ -31,7 +31,7 @@ Stocky is a simple inventory management tool, tracking price, cost, quantity, et
 
 Try Stocky yourself play around in our demo store<a href="https://stocky-imt.herokuapp.com/" target="_blank" rel="noopener"> here</a>.
 
-Store Number: F7DF6B
+Store Number: AC9158
 <br />
 Password: Password
 
