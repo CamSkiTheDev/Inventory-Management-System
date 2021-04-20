@@ -18,7 +18,7 @@ Stocky is a simple inventory management tool, tracking price, cost, quantity, et
         <img style="padding: 0 5px;" height="25" src="https://seeklogo.com/images/N/nodejs-logo-54107C5EDD-seeklogo.com.png" alt="NodeJS" />
     </a>
     <a href="https://www.mongodb.com/" target="_blank" rel="noopener">
-        <img style="padding: 0 5px;" src="https://seeklogo.com/images/M/mongodb-logo-427DDF8FDE-seeklogo.com.png" alt="MongoDB" />
+        <img style="padding: 0 5px;" height="25" src="https://seeklogo.com/images/M/mongodb-logo-427DDF8FDE-seeklogo.com.png" alt="MongoDB" />
     </a>
     <a href="https://expressjs.com/" target="_blank" rel="noopener">
         <img style="padding: 0 5px;" height="25" src="https://seeklogo.com/images/E/express-js-logo-FA36FF1D3F-seeklogo.com.png" alt="Express" />
